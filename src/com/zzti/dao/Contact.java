@@ -180,10 +180,14 @@ public class Contact {
 		ResultSet rs = null;
 		try {
 			String condition = " where 1=1 ";
-			int start = (data.getPage().getPageIndex() - 1)
-					* data.getPage().getPageSize();
-			int end = data.getPage().getPageIndex()
-					* data.getPage().getPageSize() ;
+			String limit = "";
+			if (data.getPage() != null) {
+				int start = (data.getPage().getPageIndex() - 1)
+						* data.getPage().getPageSize();
+				int end = data.getPage().getPageIndex()
+						* data.getPage().getPageSize();
+				limit = " limit " + start + "," + end;
+			}
 			// 判断姓名是否为空
 			if (data.getName() != null && !data.getName().equals("")) {
 				condition += " and Name like '%" + data.getName() + "%' ";
@@ -197,8 +201,8 @@ public class Contact {
 
 			String sql = "select a.*,b.Name as cName from (select * from Contacts "
 					+ condition
-					+ ") a inner join(select * from Class) b  on a.CID = b.ID order by a.ID limit "
-					+ start + "," + end;
+					+ ") a inner join(select * from Class) b  on a.CID = b.ID order by a.ID  "
+					+ limit;
 
 			conn = PoolManager.getConnection();
 			stmt = conn.createStatement();
@@ -230,7 +234,7 @@ public class Contact {
 			while (rs.next()) {
 				count = rs.getInt("count");
 			}
-			//设置总数
+			// 设置总数
 			result.setObj(count);
 			result.setResult(1);// 成功
 			result.setList(list);
@@ -248,4 +252,5 @@ public class Contact {
 		}
 		return result;
 	}
+
 }
