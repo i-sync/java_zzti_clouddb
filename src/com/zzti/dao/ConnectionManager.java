@@ -37,12 +37,7 @@ public class ConnectionManager {
 	 */
 	private ConnectionManager() {
 		// TODO Auto-generated constructor stub
-		try {
-			connection = DriverManager.getConnection(URL, USER, PASSWORD);
-		} catch (SQLException e) {
-			System.out.println("获取连接发送错误，错误信息如下：");
-			e.printStackTrace();
-		}
+		connection = newConnection();
 		System.out.println("初始化连接完成！");
 
 	}
@@ -67,7 +62,25 @@ public class ConnectionManager {
 	 * @return
 	 */
 	public Connection getConnection() {
+		if(connection ==null)
+			connection = newConnection();
 		return connection;
+	}
+	
+	/**
+	 * 创建一个新的连接
+	 * 
+	 * @return
+	 */
+	private Connection newConnection() {
+		Connection conn = null;
+		try {
+			conn = DriverManager.getConnection(URL, USER, PASSWORD);
+		} catch (SQLException e) {
+			System.out.println("获取连接发送错误，错误信息如下：");
+			e.printStackTrace();
+		}
+		return conn;
 	}
 	
 	/**
