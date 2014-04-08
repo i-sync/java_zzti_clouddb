@@ -23,13 +23,14 @@ public final class DBHelper {
 		Connection conn = null;
 		Statement stmt = null;
 		try {
-			conn = PoolManager.getConnection();
+			conn = ConnectionManager.getInstance().getConnection();
 			stmt = conn.createStatement();
 			result = stmt.executeUpdate(sql);
 		} catch (SQLException err) {
 			err.printStackTrace();
 		} finally {
-			PoolManager.free(null, stmt, conn);
+			//PoolManager.free(null, stmt, conn);
+			ConnectionManager.free(null, stmt);
 		}
 		return result;
 	}
@@ -51,7 +52,7 @@ public final class DBHelper {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
-			conn = PoolManager.getConnection();
+			conn = ConnectionManager.getInstance().getConnection();
 			pstmt = conn.prepareStatement(sql);
 			for (int i = 0; i < obj.length; i++) {
 				pstmt.setObject(i + 1, obj[i]);
@@ -60,7 +61,8 @@ public final class DBHelper {
 		} catch (SQLException err) {
 			throw new RuntimeException(err);
 		} finally {
-			PoolManager.free(null, pstmt, conn);
+			//PoolManager.free(null, pstmt, conn);
+			ConnectionManager.free(null, pstmt);
 		}
 		return result;
 	}
@@ -76,14 +78,14 @@ public final class DBHelper {
 		Statement stmt = null;
 		ResultSet rs = null;
 		try {
-			conn = PoolManager.getConnection();
+			conn = ConnectionManager.getInstance().getConnection(); //PoolManager.getConnection();
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 		} catch (SQLException err) {
 			err.printStackTrace();
-			PoolManager.free(rs, stmt, conn);
 		} finally {
-			PoolManager.free(null, stmt, conn);
+			//PoolManager.free(null, stmt, conn);
+			ConnectionManager.free(rs, stmt);
 		}
 		return rs;
 	}
@@ -102,17 +104,17 @@ public final class DBHelper {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			conn = PoolManager.getConnection();
+			conn = ConnectionManager.getInstance().getConnection(); //PoolManager.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			for (int i = 0; i < obj.length; i++) {
 				pstmt.setObject(i + 1, obj[i]);
 			}
 			rs = pstmt.executeQuery();
 		} catch (SQLException err) {
-			PoolManager.free(rs, pstmt, conn);
 			throw new RuntimeException(err);
 		} finally {
-			PoolManager.free(null, pstmt, conn);
+			//PoolManager.free(null, pstmt, conn);
+			ConnectionManager.free(rs, pstmt);
 		}
 		return rs;
 	}
@@ -133,7 +135,7 @@ public final class DBHelper {
 		Statement stmt = null;
 		ResultSet rs = null;
 		try {
-			conn = PoolManager.getConnection();
+			conn =ConnectionManager.getInstance().getConnection(); //PoolManager.getConnection();
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			rs.last();
@@ -142,7 +144,8 @@ public final class DBHelper {
 		} catch (SQLException err) {
 			throw new RuntimeException(err);
 		} finally {
-			PoolManager.free(rs, stmt, conn);
+			//PoolManager.free(rs, stmt, conn);
+			ConnectionManager.free(rs, stmt);
 		}
 	}
 
@@ -163,7 +166,7 @@ public final class DBHelper {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			conn = PoolManager.getConnection();
+			conn = ConnectionManager.getInstance().getConnection(); //PoolManager.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			for (int i = 0; i < obj.length; i++) {
 				pstmt.setObject(i + 1, obj[i]);
@@ -175,7 +178,8 @@ public final class DBHelper {
 		} catch (SQLException err) {
 			throw new RuntimeException(err);
 		} finally {
-			PoolManager.free(rs, pstmt, conn);
+			//PoolManager.free(rs, pstmt, conn);
+			ConnectionManager.free(rs, pstmt);
 		}
 	}
 
