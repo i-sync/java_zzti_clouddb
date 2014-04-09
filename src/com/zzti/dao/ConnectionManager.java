@@ -112,7 +112,7 @@ public class ConnectionManager {
 	 * 读取数据库连接池的配置信息
 	 */
 	private static void readConfig() {
-		InputStream in = ConnectionPool.class.getClassLoader()
+		InputStream in = ConnectionManager.class.getClassLoader()
 				.getResourceAsStream("config.properties");
 		//
 		Properties pro = new Properties();
