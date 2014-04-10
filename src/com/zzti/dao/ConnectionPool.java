@@ -50,7 +50,8 @@ public class ConnectionPool {
 		try {
 			java.lang.Class.forName(DRIVER);
 		} catch (ClassNotFoundException e) {
-			throw new ExceptionInInitializerError("加载数据库驱动：" + DRIVER + "发生异常:"+e.getMessage());
+			throw new ExceptionInInitializerError("加载数据库驱动：" + DRIVER + "发生异常:"
+					+ e.getMessage());
 		}
 	}
 
@@ -196,7 +197,7 @@ public class ConnectionPool {
 		PASSWORD = pro.getProperty("password");
 		INIT_CONN = Integer.parseInt(pro.getProperty("initsize"));
 		MAX_CONN = Integer.parseInt(pro.getProperty("poolsize"));
-		
+
 	}
 
 }

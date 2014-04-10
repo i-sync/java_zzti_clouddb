@@ -130,7 +130,7 @@ public class Contact {
 			String sql = "select a.*,b.Name as cName from Contacts a inner join Class b on a.CID= b.ID where a.ID=?"; // "select * from contacts where ID=?";
 			Object[] obj = new Object[] { data.getId() };
 
-			conn =ConnectionManager.getInstance().getConnection(); //PoolManager.getConnection();
+			conn =new ConnectionManager().getConnection();
 			pstmt = conn.prepareStatement(sql);
 			for (int i = 0; i < obj.length; i++) {
 				pstmt.setObject(i + 1, obj[i]);
@@ -163,7 +163,7 @@ public class Contact {
 			result.setMessage(e.getMessage());
 		} finally {
 			//PoolManager.free(rs, pstmt, conn);
-			ConnectionManager.free(rs, pstmt);
+			ConnectionManager.free(rs, pstmt,conn);
 		}
 
 		return result;
@@ -205,7 +205,7 @@ public class Contact {
 					+ ") a inner join(select * from Class) b  on a.CID = b.ID order by a.ID  "
 					+ limit;
 
-			conn =ConnectionManager.getInstance().getConnection(); //PoolManager.getConnection();
+			conn =new ConnectionManager().getConnection();
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			List<com.zzti.bean.Contact> list = new ArrayList<com.zzti.bean.Contact>();
@@ -250,7 +250,7 @@ public class Contact {
 			result.setMessage(e.getMessage());
 		} finally {
 			//PoolManager.free(rs, stmt, conn);
-			ConnectionManager.free(rs, stmt);
+			ConnectionManager.free(rs, stmt,conn);
 		}
 		return result;
 	}

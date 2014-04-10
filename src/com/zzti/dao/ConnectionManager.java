@@ -16,8 +16,6 @@ public class ConnectionManager {
 	private static String USER;
 	private static String PASSWORD;
 
-	private static ConnectionManager instance;
-	private Connection connection;
 	/**
 	 * 加载驱动
 	 */
@@ -33,46 +31,18 @@ public class ConnectionManager {
 	}
 
 	/**
-	 * 私有构造
+	 * 构造函数
 	 */
-	private ConnectionManager() {
+	public ConnectionManager() {
 		// TODO Auto-generated constructor stub
-		connection = newConnection();
-		System.out.println("初始化连接完成！");
-
 	}
 
 	/**
-	 * get instance
+	 * 创建一个连接
 	 * 
-	 * @return
-	 */
-	public static ConnectionManager getInstance() {
-		if (instance == null) {
-			synchronized (ConnectionManager.class) {
-				if (instance == null)
-					instance = new ConnectionManager();
-			}
-		}
-		return instance;
-	}
-
-	/**
-	 * 获取连接对象
 	 * @return
 	 */
 	public Connection getConnection() {
-		if(connection ==null)
-			connection = newConnection();
-		return connection;
-	}
-	
-	/**
-	 * 创建一个新的连接
-	 * 
-	 * @return
-	 */
-	private Connection newConnection() {
 		Connection conn = null;
 		try {
 			conn = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -82,14 +52,14 @@ public class ConnectionManager {
 		}
 		return conn;
 	}
-	
+
 	/**
-	 * 释放资源 
+	 * 释放资源
 	 * 
 	 * @param rs
 	 * @param stmt
 	 */
-	public static void free(ResultSet rs, Statement stmt) {
+	public static void free(ResultSet rs, Statement stmt, Connection conn) {
 		try {
 			if (null != rs) {
 				rs.close();
@@ -104,7 +74,16 @@ public class ConnectionManager {
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
-			} 
+			} finally {
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
 		}
 	}
 

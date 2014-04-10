@@ -45,8 +45,8 @@ public class Class {
 		Result result = new Result();
 		try {
 			String sql = "update Class set Name=?,Vocational=? where ID=?";
-			Object[] objs = new Object[] { data.getName(), data.getVocational(),
-					data.getId() };
+			Object[] objs = new Object[] { data.getName(),
+					data.getVocational(), data.getId() };
 			int res = DBHelper.executeNonQuery(sql, objs);
 			result.setResult(res);
 		} catch (Exception e) {
@@ -84,8 +84,7 @@ public class Class {
 	 * @param data
 	 * @return
 	 */
-	public TResult<com.zzti.bean.Class> getModel(
-			com.zzti.bean.Class data) {
+	public TResult<com.zzti.bean.Class> getModel(com.zzti.bean.Class data) {
 		TResult<com.zzti.bean.Class> result = new TResult<com.zzti.bean.Class>();
 
 		Connection conn = null;
@@ -96,7 +95,7 @@ public class Class {
 			String sql = "select * from Class where ID=?";
 			Object[] objs = new Object[] { data.getId() };
 
-			conn =ConnectionManager.getInstance().getConnection(); //PoolManager.getConnection();
+			conn = new ConnectionManager().getConnection();
 			pstmt = conn.prepareStatement(sql);
 			for (int i = 0; i < objs.length; i++) {
 				pstmt.setObject(i + 1, objs[i]);
@@ -122,8 +121,8 @@ public class Class {
 			result.setResult(0);
 			result.setMessage(e.getMessage());
 		} finally {
-			//PoolManager.free(rs, pstmt, conn);
-			ConnectionManager.free(rs, pstmt);
+			// PoolManager.free(rs, pstmt, conn);
+			ConnectionManager.free(rs, pstmt, conn);
 		}
 
 		return result;
@@ -141,7 +140,7 @@ public class Class {
 		ResultSet rs = null;
 		try {
 			String sql = "select * from Class";
-			conn =ConnectionManager.getInstance().getConnection(); //PoolManager.getConnection();
+			conn = new ConnectionManager().getConnection();
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			List<com.zzti.bean.Class> list = new ArrayList<com.zzti.bean.Class>();
@@ -165,8 +164,8 @@ public class Class {
 			result.setResult(0);
 			result.setMessage(e.getMessage());
 		} finally {
-			//PoolManager.free(rs, stmt, conn);
-			ConnectionManager.free(rs, stmt);
+			// PoolManager.free(rs, stmt, conn);
+			ConnectionManager.free(rs, stmt, conn);
 		}
 		return result;
 	}
