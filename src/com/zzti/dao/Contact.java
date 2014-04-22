@@ -130,7 +130,7 @@ public class Contact {
 			String sql = "select a.*,b.Name as cName from Contacts a inner join Class b on a.CID= b.ID where a.ID=?"; // "select * from contacts where ID=?";
 			Object[] obj = new Object[] { data.getId() };
 
-			conn =new ConnectionManager().getConnection();
+			conn = new ConnectionManager().getConnection();
 			pstmt = conn.prepareStatement(sql);
 			for (int i = 0; i < obj.length; i++) {
 				pstmt.setObject(i + 1, obj[i]);
@@ -162,8 +162,8 @@ public class Contact {
 			result.setResult(0);
 			result.setMessage(e.getMessage());
 		} finally {
-			//PoolManager.free(rs, pstmt, conn);
-			ConnectionManager.free(rs, pstmt,conn);
+			// PoolManager.free(rs, pstmt, conn);
+			ConnectionManager.free(rs, pstmt, conn);
 		}
 
 		return result;
@@ -185,9 +185,8 @@ public class Contact {
 			if (data.getPage() != null) {
 				int start = (data.getPage().getPageIndex() - 1)
 						* data.getPage().getPageSize();
-				int end = data.getPage().getPageIndex()
-						* data.getPage().getPageSize();
-				limit = " limit " + start + "," + end;
+				int num = data.getPage().getPageSize();
+				limit = " limit " + start + "," + num;
 			}
 			// ÅÐ¶ÏÐÕÃûÊÇ·ñÎª¿Õ
 			if (data.getName() != null && !data.getName().equals("")) {
@@ -204,8 +203,8 @@ public class Contact {
 					+ condition
 					+ ") a inner join(select * from Class) b  on a.CID = b.ID order by a.ID  "
 					+ limit;
-
-			conn =new ConnectionManager().getConnection();
+			System.out.printf(sql);
+			conn = new ConnectionManager().getConnection();
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			List<com.zzti.bean.Contact> list = new ArrayList<com.zzti.bean.Contact>();
@@ -249,8 +248,8 @@ public class Contact {
 			result.setResult(0);
 			result.setMessage(e.getMessage());
 		} finally {
-			//PoolManager.free(rs, stmt, conn);
-			ConnectionManager.free(rs, stmt,conn);
+			// PoolManager.free(rs, stmt, conn);
+			ConnectionManager.free(rs, stmt, conn);
 		}
 		return result;
 	}
