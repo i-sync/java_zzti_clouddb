@@ -5,10 +5,11 @@ import java.util.Date;
 
 public class Contact implements Serializable {
 
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 5686236415539469634L;
+	private static final long serialVersionUID = -8632781672251495809L;
 
 	public Contact() {
 	}
