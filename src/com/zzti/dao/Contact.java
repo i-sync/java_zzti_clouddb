@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.zzti.bean.ListResult;
@@ -48,10 +49,11 @@ public class Contact {
 			return result;
 		}
 		try {
-			String sql = "insert into Contacts(`Name`,`CID`,`Phone`,`Email`,`Living`,`Company`,`Remark`) values(?,?,?,?,?,?,?);";
+			String sql = "insert into Contacts(`Name`,`CID`,`Phone`,`Email`,`Living`,`Company`,`Remark`,`AddDate`,`UpdateDate`,`IP`) values(?,?,?,?,?,?,?,?,?,?);";
 			Object[] obj = new Object[] { data.getName(), data.getCid(),
 					data.getPhone(), data.getEmail(), data.getLiving(),
-					data.getCompany(), data.getRemark() };
+					data.getCompany(), data.getRemark(), new Date(),
+					new Date(), data.getIp() };
 			int res = DBHelper.executeNonQuery(sql, obj);
 			result.setResult(res);
 		} catch (Exception e) {
@@ -78,10 +80,11 @@ public class Contact {
 			return result;
 		}
 		try {
-			String sql = "update Contacts set `Name`=?,`CID`=?,`Phone`=?,`Email`=?,`Living`=?,`Company`=?,`Remark`=? where `ID`=?;";
+			String sql = "update Contacts set `Name`=?,`CID`=?,`Phone`=?,`Email`=?,`Living`=?,`Company`=?,`Remark`=?,`UpdateDate`=?,`IP`=? where `ID`=?;";
 			Object[] obj = new Object[] { data.getName(), data.getCid(),
 					data.getPhone(), data.getEmail(), data.getLiving(),
-					data.getCompany(), data.getRemark(), data.getId() };
+					data.getCompany(), data.getRemark(), new Date(),
+					data.getIp(), data.getId() };
 			int res = DBHelper.executeNonQuery(sql, obj);
 			result.setResult(res);
 		} catch (Exception e) {
@@ -146,7 +149,9 @@ public class Contact {
 				data.setLiving(rs.getString("Living"));
 				data.setCompany(rs.getString("Company"));
 				data.setRemark(rs.getString("Remark"));
-
+				data.setAddDate(rs.getDate("AddDate"));
+				data.setUpdateDate(rs.getDate("UpdateDate"));
+				data.setIp(rs.getString("IP"));
 				result.setT(data);
 				result.setResult(1);
 			} else {
@@ -219,8 +224,11 @@ public class Contact {
 				String living = rs.getString("Living");
 				String company = rs.getString("Company");
 				String remark = rs.getString("Remark");
+				Date addDate = rs.getDate("AddDate");
+				Date updateDate = rs.getDate("UpdateDate");
+				String ip = rs.getString("IP");
 				data = new com.zzti.bean.Contact(id, name, cid, cname, phone,
-						email, living, company, remark);
+						email, living, company, remark, addDate, updateDate, ip);
 				list.add(data);
 			}
 			rs.close();
@@ -253,5 +261,4 @@ public class Contact {
 		}
 		return result;
 	}
-
 }
