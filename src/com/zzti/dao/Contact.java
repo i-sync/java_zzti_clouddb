@@ -1,4 +1,4 @@
-package com.zzti.dao;
+ï»¿package com.zzti.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,7 +16,7 @@ import com.zzti.bean.TResult;
 public class Contact {
 
 	/**
-	 * ÅĞ¶ÏÁªÏµÈËÃû³ÆÊÇ·ñ´æÔÚ
+	 * åˆ¤æ–­è”ç³»äººåç§°æ˜¯å¦å­˜åœ¨
 	 * 
 	 * @param data
 	 * @return
@@ -34,18 +34,18 @@ public class Contact {
 	}
 
 	/**
-	 * Ìí¼ÓÁªÏµÈË
+	 * æ·»åŠ è”ç³»äºº
 	 * 
 	 * @param data
 	 * @return
 	 */
 	public Result add(com.zzti.bean.Contact data) {
 		Result result = new Result();
-		// Ê×ÏÈÅĞ¶ÏÁªÏµÈËÊÇ·ñÒÑ¾­´æÔÚ
+		// é¦–å…ˆåˆ¤æ–­è”ç³»äººæ˜¯å¦å·²ç»å­˜åœ¨
 		boolean flag = exists(data);
 		if (flag) {
-			result.setResult(-1);// ËµÃ÷ÓÃ»§ÒÑ´æÔÚ
-			result.setMessage("ÓÃ»§ÃûÒÑ´æÔÚ£¡");
+			result.setResult(-1);// è¯´æ˜ç”¨æˆ·å·²å­˜åœ¨
+			result.setMessage("ç”¨æˆ·åå·²å­˜åœ¨ï¼");
 			return result;
 		}
 		try {
@@ -65,18 +65,18 @@ public class Contact {
 	}
 
 	/**
-	 * ĞŞ¸ÄÁªÏµÈËĞÅÏ¢
+	 * ä¿®æ”¹è”ç³»äººä¿¡æ¯
 	 * 
 	 * @param data
 	 * @return
 	 */
 	public Result update(com.zzti.bean.Contact data) {
 		Result result = new Result();
-		// Ê×ÏÈÅĞ¶ÏÁªÏµÈËÊÇ·ñÒÑ¾­´æÔÚ
+		// é¦–å…ˆåˆ¤æ–­è”ç³»äººæ˜¯å¦å·²ç»å­˜åœ¨
 		boolean flag = exists(data);
 		if (flag) {
-			result.setResult(-1);// ËµÃ÷ÓÃ»§ÒÑ´æÔÚ
-			result.setMessage("ÓÃ»§ÃûÒÑ´æÔÚ£¡");
+			result.setResult(-1);// è¯´æ˜ç”¨æˆ·å·²å­˜åœ¨
+			result.setMessage("ç”¨æˆ·åå·²å­˜åœ¨ï¼");
 			return result;
 		}
 		try {
@@ -96,7 +96,7 @@ public class Contact {
 	}
 
 	/**
-	 * É¾³ıÁªÏµÈËĞÅÏ¢
+	 * åˆ é™¤è”ç³»äººä¿¡æ¯
 	 * 
 	 * @param data
 	 * @return
@@ -117,7 +117,7 @@ public class Contact {
 	}
 
 	/**
-	 * ²éÑ¯µ¥¸ö¶ÔÏó
+	 * æŸ¥è¯¢å•ä¸ªå¯¹è±¡
 	 * 
 	 * @param data
 	 * @return
@@ -139,7 +139,7 @@ public class Contact {
 				pstmt.setObject(i + 1, obj[i]);
 			}
 			rs = pstmt.executeQuery();
-			// ÅĞ¶ÏÊÇ·ñÓĞÊı¾İ
+			// åˆ¤æ–­æ˜¯å¦æœ‰æ•°æ®
 			if (rs.next()) {
 				data.setName(rs.getString("Name"));
 				data.setCid(rs.getInt("CID"));
@@ -156,7 +156,7 @@ public class Contact {
 				result.setResult(1);
 			} else {
 				result.setResult(0);
-				result.setMessage("Ã»ÓĞÕÒµ½Êı¾İ£¡");
+				result.setMessage("æ²¡æœ‰æ‰¾åˆ°æ•°æ®ï¼");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -175,7 +175,7 @@ public class Contact {
 	}
 
 	/**
-	 * ²éÑ¯ËùÓĞÊı¾İ
+	 * æŸ¥è¯¢æ‰€æœ‰æ•°æ®
 	 * 
 	 * @return
 	 */
@@ -193,7 +193,7 @@ public class Contact {
 				int num = data.getPage().getPageSize();
 				limit = " limit " + start + "," + num;
 			}
-			// ÅĞ¶ÏĞÕÃûÊÇ·ñÎª¿Õ
+			// åˆ¤æ–­å§“åæ˜¯å¦ä¸ºç©º
 			if (data.getName() != null && !data.getName().equals("")) {
 				condition += " and Name like '%" + data.getName() + "%' ";
 			}
@@ -233,7 +233,7 @@ public class Contact {
 			}
 			rs.close();
 
-			// ²éÑ¯×ÜÊı
+			// æŸ¥è¯¢æ€»æ•°
 			sql = "select count(1) as count from (select * from Contacts "
 					+ condition
 					+ ") a inner join(select * from Class) b  on a.CID = b.ID order by a.ID";
@@ -242,9 +242,9 @@ public class Contact {
 			while (rs.next()) {
 				count = rs.getInt("count");
 			}
-			// ÉèÖÃ×ÜÊı
+			// è®¾ç½®æ€»æ•°
 			result.setObj(count);
-			result.setResult(1);// ³É¹¦
+			result.setResult(1);// æˆåŠŸ
 			result.setList(list);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

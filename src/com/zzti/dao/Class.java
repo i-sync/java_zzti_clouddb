@@ -1,4 +1,4 @@
-package com.zzti.dao;
+ï»¿package com.zzti.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +15,7 @@ import com.zzti.bean.TResult;
 public class Class {
 
 	/**
-	 * Ìí¼Ó
+	 * æ·»åŠ 
 	 * 
 	 * @param data
 	 * @return
@@ -36,7 +36,7 @@ public class Class {
 	}
 
 	/**
-	 * ¸üĞÂ
+	 * æ›´æ–°
 	 * 
 	 * @param data
 	 * @return
@@ -58,7 +58,7 @@ public class Class {
 	}
 
 	/**
-	 * É¾³ı
+	 * åˆ é™¤
 	 * 
 	 * @param data
 	 * @return
@@ -79,7 +79,7 @@ public class Class {
 	}
 
 	/**
-	 * ²éÑ¯µ¥¸ö¶ÔÏó
+	 * æŸ¥è¯¢å•ä¸ªå¯¹è±¡
 	 * 
 	 * @param data
 	 * @return
@@ -101,7 +101,7 @@ public class Class {
 				pstmt.setObject(i + 1, objs[i]);
 			}
 			rs = pstmt.executeQuery();
-			// ÅĞ¶ÏÊÇ·ñÓĞÊı¾İ
+			// åˆ¤æ–­æ˜¯å¦æœ‰æ•°æ®
 			if (rs.next()) {
 				data.setName(rs.getString("Name"));
 				data.setVocational(rs.getString("Vocational"));
@@ -110,7 +110,7 @@ public class Class {
 				result.setResult(1);
 			} else {
 				result.setResult(0);
-				result.setMessage("Ã»ÓĞÕÒµ½Êı¾İ£¡");
+				result.setMessage("æ²¡æœ‰æ‰¾åˆ°æ•°æ®ï¼");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -129,7 +129,7 @@ public class Class {
 	}
 
 	/**
-	 * ²éÑ¯ËùÓĞÊı¾İ
+	 * æŸ¥è¯¢æ‰€æœ‰æ•°æ®
 	 * 
 	 * @return
 	 */
@@ -152,7 +152,7 @@ public class Class {
 				data = new com.zzti.bean.Class(id, name, vocational);
 				list.add(data);
 			}
-			result.setResult(1);// ³É¹¦
+			result.setResult(1);// æˆåŠŸ
 			result.setList(list);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

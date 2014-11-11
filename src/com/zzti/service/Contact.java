@@ -1,4 +1,4 @@
-package com.zzti.service;
+ï»¿package com.zzti.service;
 
 import javax.jws.WebParam;
 import javax.jws.WebService;
@@ -14,7 +14,7 @@ public class Contact implements ContactSEI {
 
 	/***********************Class*************************/
 	/**
-	 * °à¼¶Ìí¼Ó
+	 * ç­çº§æ·»åŠ 
 	 * @param data
 	 * @return
 	 */
@@ -23,7 +23,7 @@ public class Contact implements ContactSEI {
 		return new com.zzti.dao.Class().add(data);
 	}
 	/**
-	 * °à¼¶ĞŞ¸Ä
+	 * ç­çº§ä¿®æ”¹
 	 * @param data
 	 * @return
 	 */
@@ -32,7 +32,7 @@ public class Contact implements ContactSEI {
 		return new com.zzti.dao.Class().update(data);
 	}
 	/**
-	 * °à¼¶É¾³ı
+	 * ç­çº§åˆ é™¤
 	 * @param data
 	 * @return
 	 */
@@ -41,7 +41,7 @@ public class Contact implements ContactSEI {
 		return new com.zzti.dao.Class().delete(data);
 	}
 	/**
-	 * »ñÈ¡¶ÔÏó
+	 * è·å–å¯¹è±¡
 	 * @param data
 	 * @return
 	 */
@@ -50,7 +50,7 @@ public class Contact implements ContactSEI {
 		return new com.zzti.dao.Class().getModel(data);
 	}
 	/**
-	 * »ñÈ¡ÁĞ±í
+	 * è·å–åˆ—è¡¨
 	 * @return
 	 */
 	public ListResult<Class> class_getList()
@@ -61,7 +61,7 @@ public class Contact implements ContactSEI {
 
 	/***********************Contact*************************/	
 	/**
-	 * ÅĞ¶ÏÁªÏµÈËÊÇ·ñ´æÔÚ
+	 * åˆ¤æ–­è”ç³»äººæ˜¯å¦å­˜åœ¨
 	 * @param data
 	 * @return
 	 */
@@ -70,7 +70,7 @@ public class Contact implements ContactSEI {
 		return new com.zzti.dao.Contact().exists(data);
 	}
 	/**
-	 * Ìí¼ÓÁªÏµÈË
+	 * æ·»åŠ è”ç³»äºº
 	 * @param data
 	 * @return
 	 */
@@ -79,7 +79,7 @@ public class Contact implements ContactSEI {
 		return new com.zzti.dao.Contact().add(data);
 	}
 	/**
-	 * ¸öĞÔÁªÏµÈË
+	 * ä¸ªæ€§è”ç³»äºº
 	 * @param data
 	 * @return
 	 */
@@ -88,7 +88,7 @@ public class Contact implements ContactSEI {
 		return new com.zzti.dao.Contact().update(data);
 	}
 	/**
-	 * É¾³ıÁªÏµÈË
+	 * åˆ é™¤è”ç³»äºº
 	 * @param data
 	 * @return
 	 */
@@ -97,7 +97,7 @@ public class Contact implements ContactSEI {
 		return new com.zzti.dao.Contact().delete(data);
 	}
 	/**
-	 * »ñÈ¡ÁªÏµÈË¶ÔÏó
+	 * è·å–è”ç³»äººå¯¹è±¡
 	 * @param data
 	 * @return
 	 */
@@ -106,7 +106,7 @@ public class Contact implements ContactSEI {
 		return new com.zzti.dao.Contact().getModel(data);
 	}
 	/**
-	 * »ñÈ¡ÁªÏµÈËÁĞ±í
+	 * è·å–è”ç³»äººåˆ—è¡¨
 	 * @param data
 	 * @return
 	 */
@@ -120,7 +120,7 @@ public class Contact implements ContactSEI {
 	
 	/***********************android******************************/
 	/**
-	 * android¿Í»§¶Ë»ñÈ¡ËùÓĞµÄ°à¼¶ÁĞ±í
+	 * androidå®¢æˆ·ç«¯è·å–æ‰€æœ‰çš„ç­çº§åˆ—è¡¨
 	 * @return
 	 */
 	public String android_class_getlist()
@@ -130,7 +130,7 @@ public class Contact implements ContactSEI {
 		return string;
 	}
 	/**
-	 * android¿Í»§¶ËÌí¼ÓÁªÏµÈË
+	 * androidå®¢æˆ·ç«¯æ·»åŠ è”ç³»äºº
 	 * @param string
 	 * @return
 	 */
@@ -142,7 +142,7 @@ public class Contact implements ContactSEI {
 		{
 			result = new Result();
 			result.setResult(0);
-			result.setMessage("²ÎÊı×ª»»Îª¿Õ£¡");
+			result.setMessage("å‚æ•°è½¬æ¢ä¸ºç©ºï¼");
 			return SoapObjectUtils.ObjectToSting(result);
 		}
 		
@@ -150,7 +150,7 @@ public class Contact implements ContactSEI {
 		return SoapObjectUtils.ObjectToSting(result);
 	}
 	/**
-	 * android¿Í»§¶ËĞŞ¸ÄÁªÏµÈË
+	 * androidå®¢æˆ·ç«¯ä¿®æ”¹è”ç³»äºº
 	 * @param string
 	 * @return
 	 */
@@ -162,7 +162,7 @@ public class Contact implements ContactSEI {
 		{
 			result = new Result();
 			result.setResult(0);
-			result.setMessage("²ÎÊı×ª»»Îª¿Õ£¡");
+			result.setMessage("å‚æ•°è½¬æ¢ä¸ºç©ºï¼");
 			return SoapObjectUtils.ObjectToSting(result);
 		}
 		
@@ -170,7 +170,7 @@ public class Contact implements ContactSEI {
 		return SoapObjectUtils.ObjectToSting(result);
 	}
 	/**
-	 * android¿Í»§¶ËÉ¾³ıÁªÏµÈË
+	 * androidå®¢æˆ·ç«¯åˆ é™¤è”ç³»äºº
 	 * @param string
 	 * @return
 	 */
@@ -182,7 +182,7 @@ public class Contact implements ContactSEI {
 		{
 			result = new Result();
 			result.setResult(0);
-			result.setMessage("²ÎÊı×ª»»Îª¿Õ£¡");
+			result.setMessage("å‚æ•°è½¬æ¢ä¸ºç©ºï¼");
 			return SoapObjectUtils.ObjectToSting(result);
 		}
 		
@@ -190,7 +190,7 @@ public class Contact implements ContactSEI {
 		return SoapObjectUtils.ObjectToSting(result);
 	}
 	/**
-	 * android¿Í»§¶Ë»ñÈ¡ÁªÏµÈË¶ÔÏó
+	 * androidå®¢æˆ·ç«¯è·å–è”ç³»äººå¯¹è±¡
 	 * @param string
 	 * @return
 	 */
@@ -202,7 +202,7 @@ public class Contact implements ContactSEI {
 		{
 			result = new TResult<com.zzti.bean.Contact>();
 			result.setResult(0);
-			result.setMessage("²ÎÊı×ª»»Îª¿Õ£¡");
+			result.setMessage("å‚æ•°è½¬æ¢ä¸ºç©ºï¼");
 			return SoapObjectUtils.ObjectToSting(result);
 		}
 		
@@ -210,7 +210,7 @@ public class Contact implements ContactSEI {
 		return SoapObjectUtils.ObjectToSting(result);
 	}
 	/**
-	 * android¿Í»§¶Ë»ñÈ¡ÁªÏµÈËÁĞ±í
+	 * androidå®¢æˆ·ç«¯è·å–è”ç³»äººåˆ—è¡¨
 	 * @param string
 	 * @return
 	 */
@@ -222,7 +222,7 @@ public class Contact implements ContactSEI {
 		{
 			result = new ListResult<com.zzti.bean.Contact>();
 			result.setResult(0);
-			result.setMessage("²ÎÊı×ª»»Îª¿Õ£¡");
+			result.setMessage("å‚æ•°è½¬æ¢ä¸ºç©ºï¼");
 			return SoapObjectUtils.ObjectToSting(result);
 		}
 		

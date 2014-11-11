@@ -1,4 +1,4 @@
-package com.zzti.dao;
+ï»¿package com.zzti.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -13,7 +13,7 @@ public final class DBHelper {
 	}
 
 	/**
-	 * ÔöÉ¾¸Ä¡¾Add¡¢Del¡¢Update¡¿
+	 * å¢åˆ æ”¹ã€Addã€Delã€Updateã€‘
 	 * 
 	 * @param sql
 	 * @return int
@@ -37,7 +37,7 @@ public final class DBHelper {
 
 	/**
 	 * 
-	 * ÔöÉ¾¸Ä¡¾Add¡¢Delete¡¢Update¡¿
+	 * å¢åˆ æ”¹ã€Addã€Deleteã€Updateã€‘
 	 * 
 	 * 
 	 * 
@@ -68,7 +68,7 @@ public final class DBHelper {
 	}
 
 	/**
-	 * ²é¡¾Query¡¿
+	 * æŸ¥ã€Queryã€‘
 	 * 
 	 * @param sql
 	 * @return ResultSet
@@ -91,7 +91,7 @@ public final class DBHelper {
 	}
 
 	/**
-	 * ²é¡¾Query¡¿
+	 * æŸ¥ã€Queryã€‘
 	 * 
 	 * @param sql
 	 * 
@@ -121,7 +121,7 @@ public final class DBHelper {
 
 	/**
 	 * 
-	 * ÅĞ¶Ï¼ÇÂ¼ÊÇ·ñ´æÔÚ
+	 * åˆ¤æ–­è®°å½•æ˜¯å¦å­˜åœ¨
 	 * 
 	 * 
 	 * 
@@ -151,7 +151,7 @@ public final class DBHelper {
 
 	/**
 	 * 
-	 * ÅĞ¶Ï¼ÇÂ¼ÊÇ·ñ´æÔÚ
+	 * åˆ¤æ–­è®°å½•æ˜¯å¦å­˜åœ¨
 	 * 
 	 * 
 	 * 

@@ -1,4 +1,4 @@
-package com.zzti.service;
+ï»¿package com.zzti.service;
 
 import javax.jws.WebParam;
 import javax.jws.WebService;
@@ -13,31 +13,31 @@ import com.zzti.bean.TResult;
 public interface ContactSEI {
 	/***********************Class*************************/
 	/**
-	 * °à¼¶Ìí¼Ó
+	 * ç­çº§æ·»åŠ 
 	 * @param data
 	 * @return
 	 */
 	public Result class_add(Class data);
 	/**
-	 * °à¼¶ĞŞ¸Ä
+	 * ç­çº§ä¿®æ”¹
 	 * @param data
 	 * @return
 	 */
 	public Result class_update(Class data);
 	/**
-	 * °à¼¶É¾³ı
+	 * ç­çº§åˆ é™¤
 	 * @param data
 	 * @return
 	 */
 	public Result class_delete(Class data);
 	/**
-	 * »ñÈ¡¶ÔÏó
+	 * è·å–å¯¹è±¡
 	 * @param data
 	 * @return
 	 */
 	public TResult<Class> class_getModel(Class data);
 	/**
-	 * »ñÈ¡ÁĞ±í
+	 * è·å–åˆ—è¡¨
 	 * @return
 	 */
 	public ListResult<Class> class_getList();
@@ -45,37 +45,37 @@ public interface ContactSEI {
 
 	/***********************Contact*************************/	
 	/**
-	 * ÅĞ¶ÏÁªÏµÈËÊÇ·ñ´æÔÚ
+	 * åˆ¤æ–­è”ç³»äººæ˜¯å¦å­˜åœ¨
 	 * @param data
 	 * @return
 	 */
 	public boolean contact_exists(Contact data);
 	/**
-	 * Ìí¼ÓÁªÏµÈË
+	 * æ·»åŠ è”ç³»äºº
 	 * @param data
 	 * @return
 	 */
 	public Result contact_add(Contact data);
 	/**
-	 * ¸öĞÔÁªÏµÈË
+	 * ä¸ªæ€§è”ç³»äºº
 	 * @param data
 	 * @return
 	 */
 	public Result contact_update(Contact data);
 	/**
-	 * É¾³ıÁªÏµÈË
+	 * åˆ é™¤è”ç³»äºº
 	 * @param data
 	 * @return
 	 */
 	public Result contact_delete(Contact data);
 	/**
-	 * »ñÈ¡ÁªÏµÈË¶ÔÏó
+	 * è·å–è”ç³»äººå¯¹è±¡
 	 * @param data
 	 * @return
 	 */
 	public TResult<Contact> contact_getModel(Contact data);
 	/**
-	 * »ñÈ¡ÁªÏµÈËÁĞ±í
+	 * è·å–è”ç³»äººåˆ—è¡¨
 	 * @param data
 	 * @return
 	 */
@@ -85,36 +85,36 @@ public interface ContactSEI {
 	
 	/***********************android******************************/
 	/**
-	 * android¿Í»§¶Ë»ñÈ¡ËùÓĞµÄ°à¼¶ÁĞ±í
+	 * androidå®¢æˆ·ç«¯è·å–æ‰€æœ‰çš„ç­çº§åˆ—è¡¨
 	 * @return
 	 */
 	public String android_class_getlist();
 	/**
-	 * android¿Í»§¶ËÌí¼ÓÁªÏµÈË
+	 * androidå®¢æˆ·ç«¯æ·»åŠ è”ç³»äºº
 	 * @param string
 	 * @return
 	 */
 	public String android_contact_add(@WebParam(name="string") String string);
 	/**
-	 * android¿Í»§¶ËĞŞ¸ÄÁªÏµÈË
+	 * androidå®¢æˆ·ç«¯ä¿®æ”¹è”ç³»äºº
 	 * @param string
 	 * @return
 	 */
 	public String android_contact_update(@WebParam(name="string") String string);
 	/**
-	 * android¿Í»§¶ËÉ¾³ıÁªÏµÈË
+	 * androidå®¢æˆ·ç«¯åˆ é™¤è”ç³»äºº
 	 * @param string
 	 * @return
 	 */
 	public String android_contact_delete(@WebParam(name="string") String string);
 	/**
-	 * android¿Í»§¶Ë»ñÈ¡ÁªÏµÈË¶ÔÏó
+	 * androidå®¢æˆ·ç«¯è·å–è”ç³»äººå¯¹è±¡
 	 * @param string
 	 * @return
 	 */
 	public String android_contact_getmodel(@WebParam(name="string") String string);
 	/**
-	 * android¿Í»§¶Ë»ñÈ¡ÁªÏµÈËÁĞ±í
+	 * androidå®¢æˆ·ç«¯è·å–è”ç³»äººåˆ—è¡¨
 	 * @param string
 	 * @return
 	 */

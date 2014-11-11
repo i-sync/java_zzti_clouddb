@@ -1,4 +1,4 @@
-package com.zzti.dao;
+ï»¿package com.zzti.dao;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,7 +17,7 @@ public class ConnectionManager {
 	private static String PASSWORD;
 
 	/**
-	 * ¼ÓÔØÇı¶¯
+	 * åŠ è½½é©±åŠ¨
 	 */
 	static {
 		//
@@ -25,20 +25,20 @@ public class ConnectionManager {
 		try {
 			java.lang.Class.forName(DRIVER);
 		} catch (ClassNotFoundException e) {
-			throw new ExceptionInInitializerError("¼ÓÔØÊı¾İ¿âÇı¶¯£º" + DRIVER + "·¢ÉúÒì³£:"
+			throw new ExceptionInInitializerError("åŠ è½½æ•°æ®åº“é©±åŠ¨ï¼š" + DRIVER + "å‘ç”Ÿå¼‚å¸¸:"
 					+ e.getMessage());
 		}
 	}
 
 	/**
-	 * ¹¹Ôìº¯Êı
+	 * æ„é€ å‡½æ•°
 	 */
 	public ConnectionManager() {
 		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * ´´½¨Ò»¸öÁ¬½Ó
+	 * åˆ›å»ºä¸€ä¸ªè¿æ¥
 	 * 
 	 * @return
 	 */
@@ -47,14 +47,14 @@ public class ConnectionManager {
 		try {
 			conn = DriverManager.getConnection(URL, USER, PASSWORD);
 		} catch (SQLException e) {
-			System.out.println("»ñÈ¡Á¬½Ó·¢ËÍ´íÎó£¬´íÎóĞÅÏ¢ÈçÏÂ£º");
+			System.out.println("è·å–è¿æ¥å‘é€é”™è¯¯ï¼Œé”™è¯¯ä¿¡æ¯å¦‚ä¸‹ï¼š");
 			e.printStackTrace();
 		}
 		return conn;
 	}
 
 	/**
-	 * ÊÍ·Å×ÊÔ´
+	 * é‡Šæ”¾èµ„æº
 	 * 
 	 * @param rs
 	 * @param stmt
@@ -65,7 +65,7 @@ public class ConnectionManager {
 				rs.close();
 			}
 		} catch (SQLException e) {
-			// ¼ÇÂ¼ÈÕÖ¾
+			// è®°å½•æ—¥å¿—
 			e.printStackTrace();
 		} finally {
 			try {
@@ -88,7 +88,7 @@ public class ConnectionManager {
 	}
 
 	/**
-	 * ¶ÁÈ¡Êı¾İ¿âÁ¬½Ó³ØµÄÅäÖÃĞÅÏ¢
+	 * è¯»å–æ•°æ®åº“è¿æ¥æ± çš„é…ç½®ä¿¡æ¯
 	 */
 	private static void readConfig() {
 		InputStream in = ConnectionManager.class.getClassLoader()
@@ -98,7 +98,7 @@ public class ConnectionManager {
 		try {
 			pro.load(in);
 		} catch (IOException e) {
-			System.out.println("¶ÁÈ¡ÅäÖÃÎÄ¼şĞÅÏ¢·¢ËÍ´íÎó£¬´íÎóĞÅÏ¢ÈçÏÂ£º");
+			System.out.println("è¯»å–é…ç½®æ–‡ä»¶ä¿¡æ¯å‘é€é”™è¯¯ï¼Œé”™è¯¯ä¿¡æ¯å¦‚ä¸‹ï¼š");
 			e.printStackTrace();
 		}
 		//
