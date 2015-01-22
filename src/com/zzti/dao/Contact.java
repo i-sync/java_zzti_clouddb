@@ -24,7 +24,7 @@ public class Contact {
 	public boolean exists(com.zzti.bean.Contact data) {
 		boolean flag = false;
 		try {
-			String sql = "select 1 from Contacts where `Name`=? and ID != ?;";
+			String sql = "select 1 from Contact where `Name`=? and ID != ?;";
 			Object[] obj = new Object[] { data.getName(), data.getId() };
 			flag = DBHelper.isExist(sql, obj);
 		} catch (Exception e) {
@@ -49,7 +49,7 @@ public class Contact {
 			return result;
 		}
 		try {
-			String sql = "insert into Contacts(`Name`,`CID`,`Phone`,`Email`,`Living`,`Company`,`Remark`,`AddDate`,`UpdateDate`,`IP`) values(?,?,?,?,?,?,?,?,?,?);";
+			String sql = "insert into Contact(`Name`,`CID`,`Phone`,`Email`,`Living`,`Company`,`Remark`,`AddDate`,`UpdateDate`,`IP`) values(?,?,?,?,?,?,?,?,?,?);";
 			Object[] obj = new Object[] { data.getName(), data.getCid(),
 					data.getPhone(), data.getEmail(), data.getLiving(),
 					data.getCompany(), data.getRemark(), new Date(),
@@ -80,7 +80,7 @@ public class Contact {
 			return result;
 		}
 		try {
-			String sql = "update Contacts set `Name`=?,`CID`=?,`Phone`=?,`Email`=?,`Living`=?,`Company`=?,`Remark`=?,`UpdateDate`=?,`IP`=? where `ID`=?;";
+			String sql = "update Contact set `Name`=?,`CID`=?,`Phone`=?,`Email`=?,`Living`=?,`Company`=?,`Remark`=?,`UpdateDate`=?,`IP`=? where `ID`=?;";
 			Object[] obj = new Object[] { data.getName(), data.getCid(),
 					data.getPhone(), data.getEmail(), data.getLiving(),
 					data.getCompany(), data.getRemark(), new Date(),
@@ -104,7 +104,7 @@ public class Contact {
 	public Result delete(com.zzti.bean.Contact data) {
 		Result result = new Result();
 		try {
-			String sql = "delete from Contacts where ID=?";
+			String sql = "delete from Contact where ID=?";
 			Object[] objs = new Object[] { data.getId() };
 			int res = DBHelper.executeNonQuery(sql, objs);
 			result.setResult(res);
@@ -130,7 +130,7 @@ public class Contact {
 		ResultSet rs = null;
 
 		try {
-			String sql = "select a.*,b.Name as cName from Contacts a inner join Class b on a.CID= b.ID where a.ID=?"; // "select * from contacts where ID=?";
+			String sql = "select a.*,b.Name as cName from Contact a inner join Class b on a.CID= b.ID where a.ID=?"; // "select * from Contact where ID=?";
 			Object[] obj = new Object[] { data.getId() };
 
 			conn = new ConnectionManager().getConnection();
@@ -204,7 +204,7 @@ public class Contact {
 				condition += " and cid=" + data.getCid();
 			}
 
-			String sql = "select a.*,b.Name as cName from (select * from Contacts "
+			String sql = "select a.*,b.Name as cName from (select * from Contact "
 					+ condition
 					+ ") a inner join(select * from Class) b  on a.CID = b.ID order by a.ID  "
 					+ limit;
@@ -213,7 +213,7 @@ public class Contact {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			List<com.zzti.bean.Contact> list = new ArrayList<com.zzti.bean.Contact>();
-			// com.zzti.bean.Contacts data = null;
+			// com.zzti.bean.Contact data = null;
 			while (rs.next()) {
 				int id = rs.getInt("ID");
 				String name = rs.getString("Name");
@@ -234,7 +234,7 @@ public class Contact {
 			rs.close();
 
 			// 查询总数
-			sql = "select count(1) as count from (select * from Contacts "
+			sql = "select count(1) as count from (select * from Contact "
 					+ condition
 					+ ") a inner join(select * from Class) b  on a.CID = b.ID order by a.ID";
 			rs = stmt.executeQuery(sql);
