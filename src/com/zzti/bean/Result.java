@@ -2,12 +2,17 @@
 
 import java.io.Serializable;
 
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+
 /**
  * webservice返回基类
  * 
  * @author zhenyun
  * 
  */
+@XmlRootElement
 public class Result implements Serializable {
 	/**
 	 * 

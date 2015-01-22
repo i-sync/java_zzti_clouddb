@@ -2,6 +2,9 @@
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Class implements Serializable {
 
 	/**
