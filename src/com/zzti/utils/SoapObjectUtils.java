@@ -1,4 +1,4 @@
-package com.zzti.utils;
+ï»¿package com.zzti.utils;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -12,7 +12,7 @@ import sun.misc.BASE64Encoder;
 public class SoapObjectUtils {
 
 	/**
-	 * °Ñ¶ÔÏó×ª»»³É×Ö·û´®
+	 * æŠŠå¯¹è±¡è½¬æ¢æˆå­—ç¬¦ä¸²
 	 * 
 	 * @param obj
 	 * @return
@@ -38,7 +38,7 @@ public class SoapObjectUtils {
 	}
 
 	/**
-	 * °´×Ö·û´®×ª»»Îª¶ÔÏó
+	 * æŒ‰å­—ç¬¦ä¸²è½¬æ¢ä¸ºå¯¹è±¡
 	 * 
 	 * @param str
 	 * @return

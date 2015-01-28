@@ -1,4 +1,4 @@
-package com.zzti.dao;
+ï»¿package com.zzti.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +15,7 @@ import com.zzti.bean.TResult;
 public class Class {
 
 	/**
-	 * Ìí¼Ó
+	 * æ·»åŠ 
 	 * 
 	 * @param data
 	 * @return
@@ -36,7 +36,7 @@ public class Class {
 	}
 
 	/**
-	 * ¸üĞÂ
+	 * æ›´æ–°
 	 * 
 	 * @param data
 	 * @return
@@ -45,8 +45,8 @@ public class Class {
 		Result result = new Result();
 		try {
 			String sql = "update Class set Name=?,Vocational=? where ID=?";
-			Object[] objs = new Object[] { data.getName(), data.getVocational(),
-					data.getId() };
+			Object[] objs = new Object[] { data.getName(),
+					data.getVocational(), data.getId() };
 			int res = DBHelper.executeNonQuery(sql, objs);
 			result.setResult(res);
 		} catch (Exception e) {
@@ -58,7 +58,7 @@ public class Class {
 	}
 
 	/**
-	 * É¾³ı
+	 * åˆ é™¤
 	 * 
 	 * @param data
 	 * @return
@@ -79,13 +79,12 @@ public class Class {
 	}
 
 	/**
-	 * ²éÑ¯µ¥¸ö¶ÔÏó
+	 * æŸ¥è¯¢å•ä¸ªå¯¹è±¡
 	 * 
 	 * @param data
 	 * @return
 	 */
-	public TResult<com.zzti.bean.Class> getModel(
-			com.zzti.bean.Class data) {
+	public TResult<com.zzti.bean.Class> getModel(com.zzti.bean.Class data) {
 		TResult<com.zzti.bean.Class> result = new TResult<com.zzti.bean.Class>();
 
 		Connection conn = null;
@@ -96,13 +95,13 @@ public class Class {
 			String sql = "select * from Class where ID=?";
 			Object[] objs = new Object[] { data.getId() };
 
-			conn = PoolManager.getConnection();
+			conn = new ConnectionManager().getConnection();
 			pstmt = conn.prepareStatement(sql);
 			for (int i = 0; i < objs.length; i++) {
 				pstmt.setObject(i + 1, objs[i]);
 			}
 			rs = pstmt.executeQuery();
-			// ÅĞ¶ÏÊÇ·ñÓĞÊı¾İ
+			// åˆ¤æ–­æ˜¯å¦æœ‰æ•°æ®
 			if (rs.next()) {
 				data.setName(rs.getString("Name"));
 				data.setVocational(rs.getString("Vocational"));
@@ -111,7 +110,7 @@ public class Class {
 				result.setResult(1);
 			} else {
 				result.setResult(0);
-				result.setMessage("Ã»ÓĞÕÒµ½Êı¾İ£¡");
+				result.setMessage("æ²¡æœ‰æ‰¾åˆ°æ•°æ®ï¼");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -122,14 +121,15 @@ public class Class {
 			result.setResult(0);
 			result.setMessage(e.getMessage());
 		} finally {
-			PoolManager.free(rs, pstmt, conn);
+			// PoolManager.free(rs, pstmt, conn);
+			ConnectionManager.free(rs, pstmt, conn);
 		}
 
 		return result;
 	}
 
 	/**
-	 * ²éÑ¯ËùÓĞÊı¾İ
+	 * æŸ¥è¯¢æ‰€æœ‰æ•°æ®
 	 * 
 	 * @return
 	 */
@@ -140,7 +140,7 @@ public class Class {
 		ResultSet rs = null;
 		try {
 			String sql = "select * from Class";
-			conn = PoolManager.getConnection();
+			conn = new ConnectionManager().getConnection();
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			List<com.zzti.bean.Class> list = new ArrayList<com.zzti.bean.Class>();
@@ -152,7 +152,7 @@ public class Class {
 				data = new com.zzti.bean.Class(id, name, vocational);
 				list.add(data);
 			}
-			result.setResult(1);// ³É¹¦
+			result.setResult(1);// æˆåŠŸ
 			result.setList(list);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -164,7 +164,8 @@ public class Class {
 			result.setResult(0);
 			result.setMessage(e.getMessage());
 		} finally {
-			PoolManager.free(rs, stmt, conn);
+			// PoolManager.free(rs, stmt, conn);
+			ConnectionManager.free(rs, stmt, conn);
 		}
 		return result;
 	}

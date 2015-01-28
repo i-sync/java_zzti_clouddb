@@ -1,4 +1,4 @@
-package com.zzti.dao;
+ï»¿package com.zzti.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.zzti.bean.ListResult;
@@ -15,7 +16,7 @@ import com.zzti.bean.TResult;
 public class Contact {
 
 	/**
-	 * ÅĞ¶ÏÁªÏµÈËÃû³ÆÊÇ·ñ´æÔÚ
+	 * åˆ¤æ–­è”ç³»äººåç§°æ˜¯å¦å­˜åœ¨
 	 * 
 	 * @param data
 	 * @return
@@ -23,7 +24,7 @@ public class Contact {
 	public boolean exists(com.zzti.bean.Contact data) {
 		boolean flag = false;
 		try {
-			String sql = "select 1 from Contacts where `Name`=? and ID != ?;";
+			String sql = "select 1 from Contact where `Name`=? and ID != ?;";
 			Object[] obj = new Object[] { data.getName(), data.getId() };
 			flag = DBHelper.isExist(sql, obj);
 		} catch (Exception e) {
@@ -33,25 +34,26 @@ public class Contact {
 	}
 
 	/**
-	 * Ìí¼ÓÁªÏµÈË
+	 * æ·»åŠ è”ç³»äºº
 	 * 
 	 * @param data
 	 * @return
 	 */
 	public Result add(com.zzti.bean.Contact data) {
 		Result result = new Result();
-		// Ê×ÏÈÅĞ¶ÏÁªÏµÈËÊÇ·ñÒÑ¾­´æÔÚ
+		// é¦–å…ˆåˆ¤æ–­è”ç³»äººæ˜¯å¦å·²ç»å­˜åœ¨
 		boolean flag = exists(data);
 		if (flag) {
-			result.setResult(-1);// ËµÃ÷ÓÃ»§ÒÑ´æÔÚ
-			result.setMessage("ÓÃ»§ÃûÒÑ´æÔÚ£¡");
+			result.setResult(-1);// è¯´æ˜ç”¨æˆ·å·²å­˜åœ¨
+			result.setMessage("ç”¨æˆ·åå·²å­˜åœ¨ï¼");
 			return result;
 		}
 		try {
-			String sql = "insert into Contacts(`Name`,`CID`,`Phone`,`Email`,`Living`,`Company`,`Remark`) values(?,?,?,?,?,?,?);";
+			String sql = "insert into Contact(`Name`,`CID`,`Phone`,`Email`,`Living`,`Company`,`Remark`,`AddDate`,`UpdateDate`,`IP`) values(?,?,?,?,?,?,?,?,?,?);";
 			Object[] obj = new Object[] { data.getName(), data.getCid(),
 					data.getPhone(), data.getEmail(), data.getLiving(),
-					data.getCompany(), data.getRemark() };
+					data.getCompany(), data.getRemark(), new Date(),
+					new Date(), data.getIp() };
 			int res = DBHelper.executeNonQuery(sql, obj);
 			result.setResult(res);
 		} catch (Exception e) {
@@ -63,25 +65,26 @@ public class Contact {
 	}
 
 	/**
-	 * ĞŞ¸ÄÁªÏµÈËĞÅÏ¢
+	 * ä¿®æ”¹è”ç³»äººä¿¡æ¯
 	 * 
 	 * @param data
 	 * @return
 	 */
 	public Result update(com.zzti.bean.Contact data) {
 		Result result = new Result();
-		// Ê×ÏÈÅĞ¶ÏÁªÏµÈËÊÇ·ñÒÑ¾­´æÔÚ
+		// é¦–å…ˆåˆ¤æ–­è”ç³»äººæ˜¯å¦å·²ç»å­˜åœ¨
 		boolean flag = exists(data);
 		if (flag) {
-			result.setResult(-1);// ËµÃ÷ÓÃ»§ÒÑ´æÔÚ
-			result.setMessage("ÓÃ»§ÃûÒÑ´æÔÚ£¡");
+			result.setResult(-1);// è¯´æ˜ç”¨æˆ·å·²å­˜åœ¨
+			result.setMessage("ç”¨æˆ·åå·²å­˜åœ¨ï¼");
 			return result;
 		}
 		try {
-			String sql = "update Contacts set `Name`=?,`CID`=?,`Phone`=?,`Email`=?,`Living`=?,`Company`=?,`Remark`=? where `ID`=?;";
+			String sql = "update Contact set `Name`=?,`CID`=?,`Phone`=?,`Email`=?,`Living`=?,`Company`=?,`Remark`=?,`UpdateDate`=?,`IP`=? where `ID`=?;";
 			Object[] obj = new Object[] { data.getName(), data.getCid(),
 					data.getPhone(), data.getEmail(), data.getLiving(),
-					data.getCompany(), data.getRemark(), data.getId() };
+					data.getCompany(), data.getRemark(), new Date(),
+					data.getIp(), data.getId() };
 			int res = DBHelper.executeNonQuery(sql, obj);
 			result.setResult(res);
 		} catch (Exception e) {
@@ -93,7 +96,7 @@ public class Contact {
 	}
 
 	/**
-	 * É¾³ıÁªÏµÈËĞÅÏ¢
+	 * åˆ é™¤è”ç³»äººä¿¡æ¯
 	 * 
 	 * @param data
 	 * @return
@@ -101,7 +104,7 @@ public class Contact {
 	public Result delete(com.zzti.bean.Contact data) {
 		Result result = new Result();
 		try {
-			String sql = "delete from Contacts where ID=?";
+			String sql = "delete from Contact where ID=?";
 			Object[] objs = new Object[] { data.getId() };
 			int res = DBHelper.executeNonQuery(sql, objs);
 			result.setResult(res);
@@ -114,7 +117,7 @@ public class Contact {
 	}
 
 	/**
-	 * ²éÑ¯µ¥¸ö¶ÔÏó
+	 * æŸ¥è¯¢å•ä¸ªå¯¹è±¡
 	 * 
 	 * @param data
 	 * @return
@@ -127,16 +130,16 @@ public class Contact {
 		ResultSet rs = null;
 
 		try {
-			String sql = "select a.*,b.Name as cName from Contacts a inner join Class b on a.CID= b.ID where a.ID=?"; // "select * from contacts where ID=?";
+			String sql = "select a.*,b.Name as cName from Contact a inner join Class b on a.CID= b.ID where a.ID=?"; // "select * from Contact where ID=?";
 			Object[] obj = new Object[] { data.getId() };
 
-			conn = PoolManager.getConnection();
+			conn = new ConnectionManager().getConnection();
 			pstmt = conn.prepareStatement(sql);
 			for (int i = 0; i < obj.length; i++) {
 				pstmt.setObject(i + 1, obj[i]);
 			}
 			rs = pstmt.executeQuery();
-			// ÅĞ¶ÏÊÇ·ñÓĞÊı¾İ
+			// åˆ¤æ–­æ˜¯å¦æœ‰æ•°æ®
 			if (rs.next()) {
 				data.setName(rs.getString("Name"));
 				data.setCid(rs.getInt("CID"));
@@ -146,12 +149,14 @@ public class Contact {
 				data.setLiving(rs.getString("Living"));
 				data.setCompany(rs.getString("Company"));
 				data.setRemark(rs.getString("Remark"));
-
+				data.setAddDate(rs.getDate("AddDate"));
+				data.setUpdateDate(rs.getDate("UpdateDate"));
+				data.setIp(rs.getString("IP"));
 				result.setT(data);
 				result.setResult(1);
 			} else {
 				result.setResult(0);
-				result.setMessage("Ã»ÓĞÕÒµ½Êı¾İ£¡");
+				result.setMessage("æ²¡æœ‰æ‰¾åˆ°æ•°æ®ï¼");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -162,14 +167,15 @@ public class Contact {
 			result.setResult(0);
 			result.setMessage(e.getMessage());
 		} finally {
-			PoolManager.free(rs, pstmt, conn);
+			// PoolManager.free(rs, pstmt, conn);
+			ConnectionManager.free(rs, pstmt, conn);
 		}
 
 		return result;
 	}
 
 	/**
-	 * ²éÑ¯ËùÓĞÊı¾İ
+	 * æŸ¥è¯¢æ‰€æœ‰æ•°æ®
 	 * 
 	 * @return
 	 */
@@ -184,11 +190,10 @@ public class Contact {
 			if (data.getPage() != null) {
 				int start = (data.getPage().getPageIndex() - 1)
 						* data.getPage().getPageSize();
-				int end = data.getPage().getPageIndex()
-						* data.getPage().getPageSize();
-				limit = " limit " + start + "," + end;
+				int num = data.getPage().getPageSize();
+				limit = " limit " + start + "," + num;
 			}
-			// ÅĞ¶ÏĞÕÃûÊÇ·ñÎª¿Õ
+			// åˆ¤æ–­å§“åæ˜¯å¦ä¸ºç©º
 			if (data.getName() != null && !data.getName().equals("")) {
 				condition += " and Name like '%" + data.getName() + "%' ";
 			}
@@ -199,16 +204,16 @@ public class Contact {
 				condition += " and cid=" + data.getCid();
 			}
 
-			String sql = "select a.*,b.Name as cName from (select * from Contacts "
+			String sql = "select a.*,b.Name as cName from (select * from Contact "
 					+ condition
 					+ ") a inner join(select * from Class) b  on a.CID = b.ID order by a.ID  "
 					+ limit;
-
-			conn = PoolManager.getConnection();
+			System.out.printf(sql);
+			conn = new ConnectionManager().getConnection();
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			List<com.zzti.bean.Contact> list = new ArrayList<com.zzti.bean.Contact>();
-			// com.zzti.bean.Contacts data = null;
+			// com.zzti.bean.Contact data = null;
 			while (rs.next()) {
 				int id = rs.getInt("ID");
 				String name = rs.getString("Name");
@@ -219,14 +224,17 @@ public class Contact {
 				String living = rs.getString("Living");
 				String company = rs.getString("Company");
 				String remark = rs.getString("Remark");
+				Date addDate = rs.getDate("AddDate");
+				Date updateDate = rs.getDate("UpdateDate");
+				String ip = rs.getString("IP");
 				data = new com.zzti.bean.Contact(id, name, cid, cname, phone,
-						email, living, company, remark);
+						email, living, company, remark, addDate, updateDate, ip);
 				list.add(data);
 			}
 			rs.close();
 
-			// ²éÑ¯×ÜÊı
-			sql = "select count(1) as count from (select * from Contacts "
+			// æŸ¥è¯¢æ€»æ•°
+			sql = "select count(1) as count from (select * from Contact "
 					+ condition
 					+ ") a inner join(select * from Class) b  on a.CID = b.ID order by a.ID";
 			rs = stmt.executeQuery(sql);
@@ -234,9 +242,9 @@ public class Contact {
 			while (rs.next()) {
 				count = rs.getInt("count");
 			}
-			// ÉèÖÃ×ÜÊı
+			// è®¾ç½®æ€»æ•°
 			result.setObj(count);
-			result.setResult(1);// ³É¹¦
+			result.setResult(1);// æˆåŠŸ
 			result.setList(list);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -248,9 +256,9 @@ public class Contact {
 			result.setResult(0);
 			result.setMessage(e.getMessage());
 		} finally {
-			PoolManager.free(rs, stmt, conn);
+			// PoolManager.free(rs, stmt, conn);
+			ConnectionManager.free(rs, stmt, conn);
 		}
 		return result;
 	}
-
 }

@@ -1,4 +1,4 @@
-package com.zzti.dao;
+ï»¿package com.zzti.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -13,7 +13,7 @@ public final class DBHelper {
 	}
 
 	/**
-	 * ÔöÉ¾¸Ä¡¾Add¡¢Del¡¢Update¡¿
+	 * å¢åˆ æ”¹ã€Addã€Delã€Updateã€‘
 	 * 
 	 * @param sql
 	 * @return int
@@ -23,20 +23,21 @@ public final class DBHelper {
 		Connection conn = null;
 		Statement stmt = null;
 		try {
-			conn = PoolManager.getConnection();
+			conn = new ConnectionManager().getConnection();
 			stmt = conn.createStatement();
 			result = stmt.executeUpdate(sql);
 		} catch (SQLException err) {
 			err.printStackTrace();
 		} finally {
-			PoolManager.free(null, stmt, conn);
+			//PoolManager.free(null, stmt, conn);
+			ConnectionManager.free(null, stmt,conn);
 		}
 		return result;
 	}
 
 	/**
 	 * 
-	 * ÔöÉ¾¸Ä¡¾Add¡¢Delete¡¢Update¡¿
+	 * å¢åˆ æ”¹ã€Addã€Deleteã€Updateã€‘
 	 * 
 	 * 
 	 * 
@@ -51,7 +52,7 @@ public final class DBHelper {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
-			conn = PoolManager.getConnection();
+			conn = new ConnectionManager().getConnection();
 			pstmt = conn.prepareStatement(sql);
 			for (int i = 0; i < obj.length; i++) {
 				pstmt.setObject(i + 1, obj[i]);
@@ -60,13 +61,14 @@ public final class DBHelper {
 		} catch (SQLException err) {
 			throw new RuntimeException(err);
 		} finally {
-			PoolManager.free(null, pstmt, conn);
+			//PoolManager.free(null, pstmt, conn);
+			ConnectionManager.free(null, pstmt,conn);
 		}
 		return result;
 	}
 
 	/**
-	 * ²é¡¾Query¡¿
+	 * æŸ¥ã€Queryã€‘
 	 * 
 	 * @param sql
 	 * @return ResultSet
@@ -76,20 +78,20 @@ public final class DBHelper {
 		Statement stmt = null;
 		ResultSet rs = null;
 		try {
-			conn = PoolManager.getConnection();
+			conn = new ConnectionManager().getConnection();
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 		} catch (SQLException err) {
 			err.printStackTrace();
-			PoolManager.free(rs, stmt, conn);
 		} finally {
-			PoolManager.free(null, stmt, conn);
+			//PoolManager.free(null, stmt, conn);
+			ConnectionManager.free(rs, stmt,conn);
 		}
 		return rs;
 	}
 
 	/**
-	 * ²é¡¾Query¡¿
+	 * æŸ¥ã€Queryã€‘
 	 * 
 	 * @param sql
 	 * 
@@ -102,24 +104,24 @@ public final class DBHelper {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			conn = PoolManager.getConnection();
+			conn = new ConnectionManager().getConnection();
 			pstmt = conn.prepareStatement(sql);
 			for (int i = 0; i < obj.length; i++) {
 				pstmt.setObject(i + 1, obj[i]);
 			}
 			rs = pstmt.executeQuery();
 		} catch (SQLException err) {
-			PoolManager.free(rs, pstmt, conn);
 			throw new RuntimeException(err);
 		} finally {
-			PoolManager.free(null, pstmt, conn);
+			//PoolManager.free(null, pstmt, conn);
+			ConnectionManager.free(rs, pstmt,conn);
 		}
 		return rs;
 	}
 
 	/**
 	 * 
-	 * ÅĞ¶Ï¼ÇÂ¼ÊÇ·ñ´æÔÚ
+	 * åˆ¤æ–­è®°å½•æ˜¯å¦å­˜åœ¨
 	 * 
 	 * 
 	 * 
@@ -133,7 +135,7 @@ public final class DBHelper {
 		Statement stmt = null;
 		ResultSet rs = null;
 		try {
-			conn = PoolManager.getConnection();
+			conn =new ConnectionManager().getConnection();
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			rs.last();
@@ -142,13 +144,14 @@ public final class DBHelper {
 		} catch (SQLException err) {
 			throw new RuntimeException(err);
 		} finally {
-			PoolManager.free(rs, stmt, conn);
+			//PoolManager.free(rs, stmt, conn);
+			ConnectionManager.free(rs, stmt,conn);
 		}
 	}
 
 	/**
 	 * 
-	 * ÅĞ¶Ï¼ÇÂ¼ÊÇ·ñ´æÔÚ
+	 * åˆ¤æ–­è®°å½•æ˜¯å¦å­˜åœ¨
 	 * 
 	 * 
 	 * 
@@ -163,7 +166,7 @@ public final class DBHelper {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			conn = PoolManager.getConnection();
+			conn = new ConnectionManager().getConnection();
 			pstmt = conn.prepareStatement(sql);
 			for (int i = 0; i < obj.length; i++) {
 				pstmt.setObject(i + 1, obj[i]);
@@ -175,7 +178,8 @@ public final class DBHelper {
 		} catch (SQLException err) {
 			throw new RuntimeException(err);
 		} finally {
-			PoolManager.free(rs, pstmt, conn);
+			//PoolManager.free(rs, pstmt, conn);
+			ConnectionManager.free(rs, pstmt,conn);
 		}
 	}
 

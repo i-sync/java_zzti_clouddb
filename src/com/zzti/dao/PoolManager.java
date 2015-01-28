@@ -1,4 +1,4 @@
-package com.zzti.dao;
+ï»¿package com.zzti.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,7 +10,7 @@ public final class PoolManager {
 	}
 
 	/**
-	 * ·µ»ØÊı¾İ¿âÁ¬½Ó³ØÖĞÒ»¸ö¿ÉÓÃµÄÁ´½Ó
+	 * è¿”å›æ•°æ®åº“è¿æ¥æ± ä¸­ä¸€ä¸ªå¯ç”¨çš„é“¾æ¥
 	 * 
 	 * @return
 	 */
@@ -19,7 +19,7 @@ public final class PoolManager {
 	}
 
 	/**
-	 * ÊÍ·Å×ÊÔ´ connÖØĞÂ·Å»Øµ½Á¬½Ó³ØÖĞ
+	 * é‡Šæ”¾èµ„æº conné‡æ–°æ”¾å›åˆ°è¿æ¥æ± ä¸­
 	 * 
 	 * @param rs
 	 * @param stmt
@@ -31,7 +31,7 @@ public final class PoolManager {
 				rs.close();
 			}
 		} catch (SQLException e) {
-			// ¼ÇÂ¼ÈÕÖ¾
+			// è®°å½•æ—¥å¿—
 			e.printStackTrace();
 		} finally {
 			try {
@@ -49,7 +49,7 @@ public final class PoolManager {
 	}
 
 	/**
-	 * »ñÈ¡µ±Ç°Á¬½Ó³ØµÄ¿ÕÏĞÊı
+	 * è·å–å½“å‰è¿æ¥æ± çš„ç©ºé—²æ•°
 	 * 
 	 * @return
 	 */
@@ -58,7 +58,7 @@ public final class PoolManager {
 	}
 
 	/**
-	 * »ñÈ¡µ±Ç°ÕıÃ¦µÄÁ¬½ÓÊı
+	 * è·å–å½“å‰æ­£å¿™çš„è¿æ¥æ•°
 	 * 
 	 * @return
 	 */
