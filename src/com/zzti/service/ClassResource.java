@@ -15,6 +15,14 @@ import com.zzti.utils.SoapObjectUtils;
 public class ClassResource {
 	
 	@GET
+	@Path("/test")
+	public String test()
+	{
+		return "Hello Jersey...";
+		
+	}
+	
+	@GET
 	@Path("/list")
 	@Produces({MediaType.TEXT_XML})
 	public ListResult<com.zzti.bean.Class> class_list()
